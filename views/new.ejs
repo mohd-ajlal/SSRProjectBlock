@@ -1,0 +1,63 @@
+<%- include("components/navbar") %>
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="mb-4">Add New Restaurant</h1>
+                
+                <% if(locals.error) { %>
+                    <div class="alert alert-danger"><%= error %></div>
+                <% } %>
+                
+                <form action="/restaurants" method="POST">
+                    <div class="mb-3">
+                        <label for="restaurantId" class="form-label">Restaurant ID*</label>
+                        <input type="text" id="restaurantId" name="restaurantId" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="restaurantName" class="form-label">Restaurant Name*</label>
+                        <input type="text" id="restaurantName" name="restaurantName" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="cuisineType" class="form-label">Cuisine Type*</label>
+                        <input type="text" id="cuisineType" name="cuisineType" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location*</label>
+                        <input type="text" id="location" name="location" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="numberOfTables" class="form-label">Number of Tables*</label>
+                        <input type="number" id="numberOfTables" name="numberOfTables" class="form-control" min="1" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="openingHours" class="form-label">Opening Hours*</label>
+                        <input type="text" id="openingHours" name="openingHours" class="form-control" placeholder="e.g. 9 AM - 10 PM" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="contactNumber" class="form-label">Contact Number*</label>
+                        <input type="text" id="contactNumber" name="contactNumber" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" id="hasOutdoorSeating" name="hasOutdoorSeating" class="form-check-input" value="true">
+                        <label for="hasOutdoorSeating" class="form-check-label">Has Outdoor Seating</label>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="/restaurants" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Add Restaurant</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

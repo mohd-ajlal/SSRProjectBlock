@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>All Restaurants</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include("components/navbar") %>
+    <div class="container mt-4">
+      <div class="row mb-4">
+        <div class="col-md-8">
+          <h1>All Restaurants</h1>
+        </div>
+        <div class="col-md-4 text-end">
+          <a href="/restaurants/new" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i>Add New Restaurant
+          </a>
+        </div>
+      </div>
+
+      <% if(restaurants.length === 0) { %>
+      <div class="alert alert-info">
+        No restaurants found. Add your first restaurant!
+      </div>
+      <% } else { %>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <% for(let restaurant of restaurants) { %>
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header bg-dark text-white">
+              <h5 class="card-title mb-0"><%= restaurant.restaurantName %></h5>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <span class="badge bg-primary me-1"><%= restaurant.cuisineType %></span>
+                <% if(restaurant.hasOutdoorSeating) { %>
+                  <span class="badge bg-success">Outdoor Seating</span>
+                <% } %>
+              </div>
+              <p class="card-text">
+                <i class="bi bi-geo-alt me-1"></i> <strong>Location:</strong> <%= restaurant.location %>
+              </p>
+              <p class="card-text">
+                <i class="bi bi-table me-1"></i> <strong>Tables:</strong> <%= restaurant.numberOfTables %>
+              </p>
+              <p class="card-text">
+                <i class="bi bi-clock me-1"></i> <strong>Hours:</strong> <%= restaurant.openingHours %>
+              </p>
+              <p class="card-text small text-muted">
+                ID: <%= restaurant.restaurantId %>
+              </p>
+            </div>
+            <div class="card-footer bg-light d-flex justify-content-between">
+              <a href="/restaurants/<%= restaurant._id %>" class="btn btn-sm btn-info">
+                <i class="bi bi-eye me-1"></i>View
+              </a>
+              <a href="/restaurants/<%= restaurant._id %>/edit" class="btn btn-sm btn-warning">
+                <i class="bi bi-pencil me-1"></i>Edit
+              </a>
+              <form
+                action="/restaurants/<%= restaurant._id %>?_method=DELETE"
+                method="POST"
+                class="d-inline"
+              >
+                <button class="btn btn-sm btn-danger">
+                  <i class="bi bi-trash me-1"></i>Delete
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

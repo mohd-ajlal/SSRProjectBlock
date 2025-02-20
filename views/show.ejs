@@ -1,0 +1,69 @@
+<%- include("components/navbar") %>
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h2><%= restaurant.restaurantName %></h2>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h5>Restaurant ID:</h5>
+                        <p class="text-muted"><%= restaurant.restaurantId %></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Cuisine Type:</h5>
+                        <p class="text-muted"><%= restaurant.cuisineType %></p>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h5>Location:</h5>
+                        <p class="text-muted"><%= restaurant.location %></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Number of Tables:</h5>
+                        <p class="text-muted"><%= restaurant.numberOfTables %></p>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h5>Opening Hours:</h5>
+                        <p class="text-muted"><%= restaurant.openingHours %></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Contact Number:</h5>
+                        <p class="text-muted"><%= restaurant.contactNumber %></p>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h5>Outdoor Seating:</h5>
+                        <p class="text-muted">
+                            <% if(restaurant.hasOutdoorSeating) { %>
+                                <span class="badge bg-success">Available</span>
+                            <% } else { %>
+                                <span class="badge bg-secondary">Not Available</span>
+                            <% } %>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="/restaurants" class="btn btn-secondary">Back to List</a>
+                    <div>
+                        <a href="/restaurants/<%= restaurant._id %>/edit" class="btn btn-warning">Edit</a>
+                        <form class="d-inline" action="/restaurants/<%= restaurant._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
